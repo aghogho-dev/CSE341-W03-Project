@@ -41,11 +41,11 @@ const create = async (req, res) => {
 
     const account = {
         account_id: req.body.account_id,
-        limit: request.body.limit,
-        products: request.body.products
+        limit: req.body.limit,
+        products: req.body.products
     };
 
-    const result = await mongodb.getDatabase().db(process.env.DB_NAME).collection(process.env.ACCOUNT_COLLECTION).insertOne(contact);
+    const result = await mongodb.getDatabase().db(process.env.DB_NAME).collection(process.env.ACCOUNT_COLLECTION).insertOne(account);
 
     if (result.acknowledged) {
         
