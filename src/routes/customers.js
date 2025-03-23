@@ -6,10 +6,10 @@ router.get("/", customersController.getAll);
 
 router.get("/:id", customersController.getOne);
 
-// router.post("/", validation.saveCustomer, customersController.create);
+router.post("/", validation.saveCustomer, customersController.create);
 
-// router.put("/:id", validation.saveCustomer, customersController.update);
+router.put("/:id", validation.saveCustomer, customersController.update);
 
-// router.delete("/:id", customersController.remove);
+router.delete("/:id", customersController.remove);
 
 module.exports = router;

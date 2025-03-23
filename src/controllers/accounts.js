@@ -90,7 +90,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
 
     if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json("Must be a valid id to update account");
+        res.status(400).json("Must be a valid id to delete account");
     }
 
     const userId = ObjectId.createFromHexString(req.params.id);
