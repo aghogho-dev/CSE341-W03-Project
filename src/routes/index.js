@@ -6,7 +6,7 @@ router.get("/", (req, res) => res.json({message: "Welcome to CSE 341 Project for
 
 router.use("/accounts", require("./accounts"));
 
-// router.use("/customers", require("./customers"));
+router.use("/customers", require("./customers"));
 
 // router.use("/transactions", require("./transactions"));
 
