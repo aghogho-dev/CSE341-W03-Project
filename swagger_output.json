@@ -238,6 +238,9 @@
       },
       "post": {
         "description": "POST or CREATE a customer API",
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -247,27 +250,100 @@
             "in": "body",
             "schema": {
               "type": "object",
+              "required": [
+                "username",
+                "name",
+                "address",
+                "birthdate",
+                "email",
+                "accounts",
+                "tier_and_details"
+              ],
               "properties": {
                 "username": {
-                  "example": "any"
+                  "type": "string",
+                  "description": "Unique customer username",
+                  "example": "blessedmagnificient"
                 },
                 "name": {
-                  "example": "any"
+                  "type": "string",
+                  "description": "Full name of customer",
+                  "example": "Blessed Magnificient"
                 },
                 "address": {
-                  "example": "any"
+                  "type": "string",
+                  "description": "Customer's address",
+                  "example": "1 Oak Close, Ashbridge, OH 10232"
                 },
                 "birthdate": {
-                  "example": "any"
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Customer's birthdate in ISO 8601 format",
+                  "example": "1998-10-13T17:14:27.000Z"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "format": "email",
+                  "description": "Customer's email address",
+                  "example": "blessed@example.com"
                 },
                 "accounts": {
-                  "example": "any"
+                  "type": "array",
+                  "minItems": 1,
+                  "description": "List of account IDs associated with customer",
+                  "items": {
+                    "type": "integer",
+                    "example": 898989
+                  },
+                  "example": [898989]
                 },
                 "tier_and_details": {
-                  "example": "any"
+                  "type": "object",
+                  "description": "Membership tiers and benefits for customer",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "tier": {
+                        "type": "string",
+                        "enum": ["Bronze", "Silver", "Gold", "Platinum"],
+                        "description": "Customer's membership tier",
+                        "example": "Platinum"
+                      },
+                      "benefits": {
+                        "type": "array",
+                        "minItems": 1,
+                        "description": "List of benefits available in this tier",
+                        "items": {
+                          "type": "string",
+                          "example": "dedicated accont representative"
+                        },
+                        "example": [
+                          "airline lounge access"
+                        ]
+                      },
+                      "active": {
+                        "type": "boolean",
+                        "description": "Indicates if membership tier is still active",
+                        "example": true
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "Unique identifier for the tier entry",
+                        "example": "69f8b6a3c39c42edb540499ee2651b75"
+                      }
+                    }
+                  },
+                  "example": {
+                    "69f8b6a3c39c42edb540499ee2651b75": {
+                      "tier": "Bronze",
+                      "benefits": [
+                        "dedicated account representative",
+                        "airline lounge access"
+                      ],
+                      "active": true,
+                      "id": "69f8b6a3c39c42edb540499ee2651b75"
+                    }
+                  }
                 }
               }
             }
