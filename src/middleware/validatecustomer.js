@@ -1,4 +1,4 @@
-const validator = require("../helpers/validate");
+const validator = require("../helpers/validatecustomer");
 
 const saveCustomer = (req, res, next) => {
 
