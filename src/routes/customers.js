@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const customersController = require("../controllers/customers");
-const validation = require("../middleware/validate");
+const validation = require("../middleware/validatecustomer");
 
 router.get("/", customersController.getAll);
 
