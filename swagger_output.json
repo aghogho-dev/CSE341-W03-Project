@@ -13,7 +13,7 @@
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "description": "The API to the root or HomePage",
         "responses": {
           "200": {
             "description": "OK"
@@ -23,7 +23,7 @@
     },
     "/api-docs": {
       "get": {
-        "description": "",
+        "description": "TAPI Documentation",
         "responses": {
           "default": {
             "description": ""
@@ -33,7 +33,7 @@
     },
     "/accounts/": {
       "get": {
-        "description": "",
+        "description": "GET ALL accounts API",
         "produces": [
           "application/json"
         ],
@@ -47,7 +47,10 @@
         }
       },
       "post": {
-        "description": "",
+        "description": "POST or CREATE an account API",
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -57,15 +60,40 @@
             "in": "body",
             "schema": {
               "type": "object",
+              "required": [
+                "account_id",
+                "limit",
+                "products"
+              ],
               "properties": {
                 "account_id": {
-                  "example": "any"
+                  "type": "integer",
+                  "description": "Unique account ID",
+                  "example": 898989
                 },
                 "limit": {
-                  "example": "any"
+                  "type": "integer",
+                  "minimum": 9000,
+                  "description": "Credit limit for the account",
+                  "example": 9000
                 },
                 "products": {
-                  "example": "any"
+                  "type": "array",
+                  "minItems": 1,
+                  "description": "List of products associated with the account.",
+                  "items": {
+                    "type": "string",
+                    "description": "Product name.",
+                    "example": "CurrencyService"
+                  },
+                  "example": [
+                    "Brokerage",
+                    "CurrencyService",
+                    "Derivatives",
+                    "InvestmentFund",
+                    "Commodity",
+                    "InvestmentStock"
+                  ]
                 }
               }
             }
@@ -86,7 +114,7 @@
     },
     "/accounts/{id}": {
       "get": {
-        "description": "",
+        "description": "GET an account API",
         "produces": [
           "application/json"
         ],
@@ -108,7 +136,10 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "PUT or UPDATE an account API",
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -118,6 +149,44 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "account_id": {
+                  "type": "integer",
+                  "description": "Unique account ID",
+                  "example": 898989
+                },
+                "limit": {
+                  "type": "integer",
+                  "minimum": 9000,
+                  "description": "Credit limit for the account",
+                  "example": 9000
+                },
+                "products": {
+                  "type": "array",
+                  "minItems": 1,
+                  "description": "List of products associated with the account.",
+                  "items": {
+                    "type": "string",
+                    "description": "Product name.",
+                    "example": "CurrencyService"
+                  },
+                  "example": [
+                    "Brokerage",
+                    "CurrencyService",
+                    "Derivatives",
+                    "InvestmentFund",
+                    "Commodity",
+                    "InvestmentStock"
+                  ]
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -130,7 +199,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "DELETE an account API",
         "produces": [
           "application/json"
         ],
@@ -154,7 +223,7 @@
     },
     "/customers/": {
       "get": {
-        "description": "",
+        "description": "GET ALL customers API",
         "produces": [
           "application/json"
         ],
@@ -168,7 +237,7 @@
         }
       },
       "post": {
-        "description": "",
+        "description": "POST or CREATE a customer API",
         "produces": [
           "application/json"
         ],
@@ -219,7 +288,7 @@
     },
     "/customers/{id}": {
       "get": {
-        "description": "",
+        "description": "GET a customer API",
         "produces": [
           "application/json"
         ],
@@ -241,7 +310,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "PUT or UPDATE a customer API",
         "produces": [
           "application/json"
         ],
@@ -263,7 +332,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "DELETE a customer API",
         "produces": [
           "application/json"
         ],
