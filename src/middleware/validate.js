@@ -1,6 +1,6 @@
-const validator = require("../helpers/validate");
-
 const saveAccount = (req, res, next) => {
+
+    const validator = require("../helpers/validate");
 
     const validationRule = {
         account_id: "required|integer",
@@ -25,6 +25,8 @@ const saveAccount = (req, res, next) => {
 
 
 const saveCustomer = (req, res, next) => {
+
+    const validator = require("../helpers/validate");
 
     const validationRule  = {
         username: "required|string",
