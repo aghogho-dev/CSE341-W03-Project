@@ -28,10 +28,8 @@ app.use("/", routes);
 
 app.use((err, req, res, next) => {
 
-    if (res.status === 401)
-        return res.json({message: "Not Unauthorized. Log in."});
-    
-    return res.status(err.status || 500).json({message: "An error occured."});
+    if (res.status === 401) res.json({message: "Not Unauthorized. Log in."});
+    else res.status(err.status || 500).json({message: "An error occured."});
 });
 
 
