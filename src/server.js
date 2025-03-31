@@ -26,6 +26,14 @@ app.use((req, res, next) => {
 
 app.use("/", routes);
 
+app.use((err, req, res, next) => {
+
+    if (res.status == 401)
+        res.json({message: "Not Unauthorized. Log in."});
+    
+    res.status(err.status || 500).json({message: "An error occured."});
+});
+
 
 process.on("uncaughtException", (err, origin) => {
     console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
