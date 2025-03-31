@@ -1,15 +1,16 @@
 const router = require("express").Router();
 const customersController = require("../controllers/customers");
 const validation = require("../middleware/validate");
+const { auth, requiresAuth } = require("express-openid-connect");
 
-router.get("/", customersController.getAll);
+router.get("/", requiresAuth(),customersController.getAll);
 
-router.get("/:id", customersController.getOne);
+router.get("/:id", requiresAuth(), customersController.getOne);
 
-router.post("/", validation.saveCustomer, customersController.create);
+router.post("/", requiresAuth(), validation.saveCustomer, customersController.create);
 
-router.put("/:id", validation.saveCustomer, customersController.update);
+router.put("/:id", requiresAuth(), validation.saveCustomer, customersController.update);
 
-router.delete("/:id", customersController.remove);
+router.delete("/:id", requiresAuth(), customersController.remove);
 
 module.exports = router;
