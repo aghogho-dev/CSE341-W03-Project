@@ -17,7 +17,8 @@ router.use("/", require("./swagger"));
 router.get("/", (req, res) => {
     res.json({
         message: "Welcome to CSE 341 Project for Weeks 3 and 4",
-        authentication: req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out'
+        authentication: req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out',
+        user: req.oidc.user
     })
   }
 );
