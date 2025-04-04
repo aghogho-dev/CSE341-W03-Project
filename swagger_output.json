@@ -490,7 +490,7 @@
         }
       }
     },
-    "states/": {
+    "/states/": {
       "get": {
         "description": "",
         "produces": [
@@ -540,7 +540,7 @@
         }
       }
     },
-    "states/{id}": {
+    "/states/{id}": {
       "get": {
         "description": "",
         "produces": [
