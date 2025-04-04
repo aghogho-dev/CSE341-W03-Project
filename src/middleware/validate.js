@@ -59,7 +59,66 @@ const saveCustomer = (req, res, next) => {
     });
 };
 
+const saveState = (req, res, next) => {
+    const validator = require("../helpers/validate");
+
+    const validationRule  = {
+        isoCode: "required|string|size:2",
+        name: "required|string"
+    };
+
+    validator(req.body, validationRule, {}, (err, status) => {
+
+        if (!status) {
+            res.status(400).send({
+                success:false,
+                message: "State validation failed",
+                data: err
+            });
+        } else {
+            next();
+        }
+    });
+};
+
+
+const saveTransaction = (req, res, next) => {
+    const validator = require("../helpers/validate");
+
+    const validationRule  = {
+        account_id: "required|integer",
+        transaction_count: "required|integer",
+        bucket_start_date: "required|date",
+        bucket_end_date: "required|date",
+        transactions: "required|array|min:1",
+        "transactions.*": "object",
+        "transactions.*.date": "required|date",
+        "transactions.*.amount": "required|integer",
+        "transactions.*.transaction_code": "required|string|in:buy,sell",
+        "transactions.*.symbol": "required|string",
+        "transactions.*.price": "required|numeric",
+        "transactions.*.total": "required|numeric",   
+    };
+
+    validator(req.body, validationRule, {}, (err, status) => {
+
+        if (!status) {
+            res.status(400).send({
+                success:false,
+                message: "Transaction validation failed",
+                data: err
+            });
+        } else {
+            next();
+        }
+    });
+};
+
+
+
 module.exports = {
     saveAccount,
-    saveCustomer
+    saveCustomer,
+    saveState,
+    saveTransaction
 }
