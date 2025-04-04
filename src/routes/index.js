@@ -29,6 +29,6 @@ router.use("/customers", require("./customers"));
 
 router.use("/transactions", require("./transactions"));
 
-router.use("states", require("./states"));
+router.use("/states", require("./states"));
 
 module.exports = router;
