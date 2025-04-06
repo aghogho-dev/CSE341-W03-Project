@@ -45,6 +45,8 @@ const create = async (req, res) => {
             transactions: req.body.transactions
         };
 
+        console.log(transaction);
+
         const result = await mongodb.getDatabase().db(process.env.DB_NAME).collection(process.env.TRANSACTION_COLLECTION).insertOne(transaction);
 
         if (result.acknowledged) {
