@@ -10,6 +10,73 @@
   "schemes": [
     "https"
   ],
+  "parameters": {
+    "PageParam": {
+      "name": "page",
+      "in": "query",
+      "description": "Page number for pagination",
+      "required": false,
+      "type": "integer",
+      "default": 1
+    },
+    "LimitParam": {
+      "name": "limit",
+      "in": "query",
+      "description": "Number of results per page",
+      "required": false,
+      "type": "integer",
+      "default": 10
+    }
+  },
+  "definitions": {
+    "Transaction": {
+      "type": "object",
+      "required": [
+        "date",
+        "amount",
+        "transaction_code",
+        "symbol",
+        "price",
+        "total"
+      ],
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "example": "1969-02-04T00:00:00.000+00:00"
+        },
+        "amount": {
+          "type": "integer",
+          "example": 1000
+        },
+        "transaction_code": {
+          "type": "string",
+          "enum": ["buy", "sell"],
+          "example": "buy"
+        },
+        "symbol": {
+          "type": "string",
+          "example": "aapl"
+        },
+        "price": {
+          "type": "number",
+          "format": "float",
+          "example": 100.0
+        },
+        "total": {
+          "type": "number",
+          "format": "float",
+          "example": 100000.0
+        }
+      },
+      "TransactionList": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Transaction"
+        }
+      }
+    }
+  },
   "paths": {
     "/": {
       "get": {
@@ -33,13 +100,53 @@
     },
     "/transactions/": {
       "get": {
-        "description": "GET ALL transactions API",
+        "description": "GET ALL transactions API with Pagination",
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageParam"
+          },
+          {
+            "$ref": "#/parameters/LimitParam"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "description": "Current page number",
+                  "example": 1
+                },
+                "limit": {
+                  "type": "integer",
+                  "description": "Number of results per page",
+                  "example": 10
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total number of transactions",
+                  "example": 50
+                },
+                "totalPages": {
+                  "type": "integer",
+                  "description": "Total number of pages",
+                  "example": 5
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Transaction"
+                  },
+                  "description": "List of transactions"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
