@@ -96,8 +96,8 @@ const saveTransaction = (req, res, next) => {
         "transactions.*.amount": "required|integer",
         "transactions.*.transaction_code": "required|string|in:buy,sell",
         "transactions.*.symbol": "required|string",
-        "transactions.*.price": "required|numeric",
-        "transactions.*.total": "required|numeric",   
+        "transactions.*.price": "required|string",
+        "transactions.*.total": "required|string",   
     };
 
     validator(req.body, validationRule, {}, (err, status) => {

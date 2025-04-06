@@ -124,14 +124,12 @@
                         "example": "aapl"
                       },
                       "price": {
-                        "type": "number",
-                        "format": "float",
-                        "example": 100.0
+                        "type": "string",
+                        "example": "100.0"
                       },
                       "total": {
-                        "type": "number",
-                        "format": "float",
-                        "example": 100000.0
+                        "type": "string",
+                        "example": "100000.0"
                       }
                     }
                   },
@@ -141,8 +139,8 @@
                       "amount": 1000,
                       "transaction_code": "buy",
                       "symbol": "aapl",
-                      "price": 100.0,
-                      "total": 100000.0
+                      "price": "100.0",
+                      "total": "100000.0"
                     }
                   ]
                 }
@@ -269,14 +267,12 @@
                         "example": "aapl"
                       },
                       "price": {
-                        "type": "number",
-                        "format": "float",
-                        "example": 100.0
+                        "type": "string",
+                        "example": "100.0"
                       },
                       "total": {
-                        "type": "number",
-                        "format": "float",
-                        "example": 100000.0
+                        "type": "string",
+                        "example": "100000.0"
                       }
                     }
                   },
@@ -286,8 +282,8 @@
                       "amount": 1000,
                       "transaction_code": "buy",
                       "symbol": "aapl",
-                      "price": 100.0,
-                      "total": 100000.0
+                      "price": "100.0",
+                      "total": "100000.0"
                     }
                   ]
                 }
