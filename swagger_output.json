@@ -1,0 +1,798 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API Documentation",
+    "description": "A simple CRUD web services API for a banking application",
+    "version": "1.0.0"
+  },
+  "host": "cse341-w03-project.onrender.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "The API to the root or HomePage",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "API Documentation",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/transactions/": {
+      "get": {
+        "description": "GET ALL transactions API with Pagination",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "POST or CREATE a transaction API",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "account_id",
+                "transaction_count",
+                "bucket_start_date",
+                "bucket_end_date",
+                "transactions"
+              ],
+              "properties": {
+                "account_id": {
+                  "type": "integer",
+                  "description": "The account ID",
+                  "example": 898989
+                },
+                "transaction_count": {
+                  "type": "integer",
+                  "description": "The number of transactions",
+                  "example": 1
+                },
+                "bucket_start_date": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The start date of the bucket",
+                  "example": "1962-10-13T17:14:27.000Z"
+                },
+                "bucket_end_date": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The end date of the bucket",
+                  "example": "1997-10-13T17:14:27.000Z"
+                },
+                "transactions": {
+                  "type": "array",
+                  "minItems": 1,
+                  "description": "List of the transactions",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "date",
+                      "amount",
+                      "transaction_code",
+                      "symbol",
+                      "price",
+                      "total"
+                    ],
+                    "properties": {
+                      "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1969-10-13T17:14:27.000Z"
+                      },
+                      "amount": {
+                        "type": "integer",
+                        "example": 1000
+                      },
+                      "transaction_code": {
+                        "type": "string",
+                        "enum": ["buy", "sell"],
+                        "example": "buy"
+                      },
+                      "symbol": {
+                        "type": "string",
+                        "example": "aapl"
+                      },
+                      "price": {
+                        "type": "string",
+                        "example": "100.0"
+                      },
+                      "total": {
+                        "type": "string",
+                        "example": "100000.0"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "date": "1969-10-13T17:14:27.000Z",
+                      "amount": 1000,
+                      "transaction_code": "buy",
+                      "symbol": "aapl",
+                      "price": "100.0",
+                      "total": "100000.0"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/transactions/{id}": {
+      "get": {
+        "description": "GET a transaction API",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "PUT or UPDATE a transaction API",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "account_id": {
+                  "type": "integer",
+                  "description": "The account ID",
+                  "example": 898989
+                },
+                "transaction_count": {
+                  "type": "integer",
+                  "description": "The number of transactions",
+                  "example": 1
+                },
+                "bucket_start_date": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The start date of the bucket",
+                  "example": "1969-10-13T17:14:27.000Z"
+                },
+                "bucket_end_date": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The end date of the bucket",
+                  "example": "1997-10-13T17:14:27.000Z"
+                },
+                "transactions": {
+                  "type": "array",
+                  "minItems": 1,
+                  "description": "List of the transactions",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "date",
+                      "amount",
+                      "transaction_code",
+                      "symbol",
+                      "price",
+                      "total"
+                    ],
+                    "properties": {
+                      "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1969-10-13T17:14:27.000Z"
+                      },
+                      "amount": {
+                        "type": "integer",
+                        "example": 1000
+                      },
+                      "transaction_code": {
+                        "type": "string",
+                        "enum": ["buy", "sell"],
+                        "example": "buy"
+                      },
+                      "symbol": {
+                        "type": "string",
+                        "example": "aapl"
+                      },
+                      "price": {
+                        "type": "string",
+                        "example": "100.0"
+                      },
+                      "total": {
+                        "type": "string",
+                        "example": "100000.0"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "date": "1969-10-13T17:14:27.000Z",
+                      "amount": 1000,
+                      "transaction_code": "buy",
+                      "symbol": "aapl",
+                      "price": "100.0",
+                      "total": "100000.0"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "DELETE a transaction API",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/states/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "isoCode",
+                "name"
+              ],
+              "properties": {
+                "isoCode": {
+                  "type": "string",
+                  "description": "The ISO code of the state",
+                  "example": "CA"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the state",
+                  "example": "Canada"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/states/{id}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "PUT or UPDATE a state API",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "isoCode": {
+                  "type": "string",
+                  "description": "The ISO code of the state",
+                  "example": "CA"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the state",
+                  "example": "Canada"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "account_id": {
+                  "example": "any"
+                },
+                "limit": {
+                  "example": "any"
+                },
+                "products": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/{id}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/customers/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "birthdate": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "accounts": {
+                  "example": "any"
+                },
+                "tier_and_details": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/customers/{id}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
