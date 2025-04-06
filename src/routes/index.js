@@ -23,12 +23,13 @@ router.get("/", (req, res) => {
   }
 );
 
-router.use("/accounts", require("./accounts"));
-
-router.use("/customers", require("./customers"));
 
 router.use("/transactions", require("./transactions"));
 
 router.use("/states", require("./states"));
+
+router.use("/accounts", require("./accounts"));
+
+router.use("/customers", require("./customers"));
 
 module.exports = router;
