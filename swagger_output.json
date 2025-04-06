@@ -82,13 +82,13 @@
                   "type": "string",
                   "format": "date-time",
                   "description": "The start date of the bucket",
-                  "example": "1969-02-04T00:00:00.000+00:00"
+                  "example": "1962-10-13T17:14:27.000Z"
                 },
                 "bucket_end_date": {
                   "type": "string",
                   "format": "date-time",
                   "description": "The end date of the bucket",
-                  "example": "1997-02-04T00:00:00.000+00:00"
+                  "example": "1997-10-13T17:14:27.000Z"
                 },
                 "transactions": {
                   "type": "array",
@@ -108,7 +108,7 @@
                       "date": {
                         "type": "string",
                         "format": "date-time",
-                        "example": "1969-02-04T00:00:00.000+00:00"
+                        "example": "1969-10-13T17:14:27.000Z"
                       },
                       "amount": {
                         "type": "integer",
@@ -135,7 +135,7 @@
                   },
                   "example": [
                     {
-                      "date": "1969-02-04T00:00:00.000+00:00",
+                      "date": "1969-10-13T17:14:27.000Z",
                       "amount": 1000,
                       "transaction_code": "buy",
                       "symbol": "aapl",
@@ -225,13 +225,13 @@
                   "type": "string",
                   "format": "date-time",
                   "description": "The start date of the bucket",
-                  "example": "1969-02-04T00:00:00.000+00:00"
+                  "example": "1969-10-13T17:14:27.000Z"
                 },
                 "bucket_end_date": {
                   "type": "string",
                   "format": "date-time",
                   "description": "The end date of the bucket",
-                  "example": "1997-02-04T00:00:00.000+00:00"
+                  "example": "1997-10-13T17:14:27.000Z"
                 },
                 "transactions": {
                   "type": "array",
@@ -251,7 +251,7 @@
                       "date": {
                         "type": "string",
                         "format": "date-time",
-                        "example": "1969-02-04T00:00:00.000+00:00"
+                        "example": "1969-10-13T17:14:27.000Z"
                       },
                       "amount": {
                         "type": "integer",
@@ -278,7 +278,7 @@
                   },
                   "example": [
                     {
-                      "date": "1969-02-04T00:00:00.000+00:00",
+                      "date": "1969-10-13T17:14:27.000Z",
                       "amount": 1000,
                       "transaction_code": "buy",
                       "symbol": "aapl",
