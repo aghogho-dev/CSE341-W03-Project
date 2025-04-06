@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "API Documentation",
+    "title": "API Documentation.",
     "description": "A simple CRUD web services API for a banking application",
     "version": "1.0.0"
   },
